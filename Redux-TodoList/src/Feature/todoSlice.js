@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"; // 1) import slice
 
 // 2) create initial state
 const initialState = {
-  todo: [
+  todo:JSON.parse(localStorage.getItem("TodoDataStored")) || [
     // {
     //   title: "hello world",
     //   date: "20/08/2025",
@@ -23,13 +23,18 @@ const todoSlice = createSlice({
         date:action.payload.date,
       };
       state.todo.push(newTodo);
+      localStorage.setItem("TodoDataStored" , JSON.stringify(state.todo))
     },
     remove : (state , action)=>{
       state.todo.splice(action,1)
+      localStorage.setItem("TodoDataStored" , JSON.stringify(state.todo))
+
     } , 
     update : (state , action)=> {
       const {index , title , date} = action.payload
       state.todo[index] = {title : title , date : date};
+      localStorage.setItem("TodoDataStored" , JSON.stringify(state.todo))
+
     }
   },
 });
