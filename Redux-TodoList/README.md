@@ -6,8 +6,8 @@ Perfect for practicing state management and learning how to work with Redux Tool
 
 ---
 
-## 🚀 Live Demo
-🔗 [View Project](https://your-live-link.vercel.app) -->
+## 🚀 Video link
+🔗 [View Project](https://drive.google.com/file/d/1Vz8ZAhhkkMDd0OiAXfEdKykU3Ei7w54_/view?usp=sharing) -->
 
 ---
 
@@ -38,8 +38,9 @@ Perfect for practicing state management and learning how to work with Redux Tool
 ## ⚙️ Installation & Setup
 
 
-# 1) Install dependencies
+```
+1) Install dependencies
 npm install
 
-# 2) Start development server
+2) Start development server
 npm run dev
