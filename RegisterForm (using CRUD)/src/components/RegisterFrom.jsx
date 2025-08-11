@@ -7,14 +7,34 @@ const [name , setname] = useState("")
 const [email , setemail] = useState("")
 const [number , setnumber] = useState("")
 const [password , setpassword] = useState("")
+const [editIndex , seteditIndex]  = useState(null)
 
   const userData = useSelector((state)=>state.userData.userData)
 
   const dispatch = useDispatch()
 
-  const handleDispatch = (e)=>{
-    e.preventDefault()
-    dispatch(addUserData({name : name , email:email , number : number , password:password}))    
+  const handleAddAndUpdateData = ()=>{
+
+    if (editIndex !== null) {
+      dispatch(edit({ index: editIndex, name, email, number, password }));
+      seteditIndex(null);
+      alert("Form Updated ✅");
+    } else {
+      dispatch(
+        addUserData({
+          name: name,
+          email: email,
+          number: number,
+          password: password,
+        })
+      );
+      alert("Registration Successful ✅");
+    }
+    setname("");
+    setemail("");
+    setnumber("");
+    setpassword("");
+        
   }
 
   return (
@@ -22,13 +42,13 @@ const [password , setpassword] = useState("")
         <h1 className='fw-bold text-center'>Registration Form</h1>
       
 <div className='container d-flex mt-5' >
-            <form action="" className=' text-center'  onSubmit={handleDispatch}>
-            <input className='mt-3' type="text" placeholder='Enter Full name :' onChange={(el)=>setname(el.target.value)} required/> <br />
-            <input className='mt-3' type="Email" placeholder='Enter Email :' onChange={(el)=>setemail(el.target.value)} required/><br />
-            <input className='mt-3' type="tel" placeholder='Enter Mobile Number :'  onChange={(el)=>setnumber(el.target.value)} maxLength={10} required /><br />
-            <input className='mt-3' type="password" placeholder='Enter Password :'  onChange={(el)=>setpassword(el.target.value)} required/> <br />
-            <input className='mt-5 mb-3 btn btn-primary' type="submit"/>
-            </form>
+            <div className=' text-center form'>
+            <input className='mt-3' value={name} type="text" placeholder='Enter Full name :' onChange={(el)=>setname(el.target.value)} required/> <br />
+            <input className='mt-3' value={email} type="Email" placeholder='Enter Email :' onChange={(el)=>setemail(el.target.value)} required/><br />
+            <input className='mt-3' value={number} type="tel" placeholder='Enter Mobile Number :'  onChange={(el)=>setnumber(el.target.value)} maxLength={10} required /><br />
+            <input className='mt-3' value={password} type="password" placeholder='Enter Password :'  onChange={(el)=>setpassword(el.target.value)} required/> <br />
+            <button disabled={!name || !email || !number || !password} className='mt-5 mb-3 btn btn-primary' onClick={()=>handleAddAndUpdateData()}>{editIndex !== null ? "Update" : "Submit" }</button>
+            </div>
 
  <div className='dataContainer ms-5 '>
         {userData.length  > 0 ?  (userData.map((el,index)=>(
@@ -40,10 +60,16 @@ const [password , setpassword] = useState("")
                 <span><strong>Mobile Number : </strong>{el.number}</span><br />
                 <span><strong>Password : </strong>{el.password}</span><br />
                 <button className='me-3 btn btn-outline-danger' onClick={()=>dispatch(remove())}>❌</button>
-                <button  className=" btn btn-outline-success" onClick={()=>dispatch(edit({index : index , name : "pratik" , email : "pratik@gmail.com" , number:"7484788542" , password:"createIt" }))}>✏️</button>
+                <button  className=" btn btn-outline-success" onClick={()=>{
+                  seteditIndex(index)
+                  setname(el.name)
+                  setemail(el.email)
+                  setnumber(el.number)
+                  setpassword(el.password)
+                }}>✏️</button>
                 </section>
 
-        )) ):( <h2 className='text-center text-danger'>data not find !</h2>)}
+        )) ):( <h2 className='text-center text-danger'>Data not Found !</h2>)}
         </div>
         </div>
 

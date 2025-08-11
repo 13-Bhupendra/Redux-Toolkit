@@ -19,7 +19,7 @@ const formDataSlice = createSlice({
             }            
             state.userData.push(newUserData);
             localStorage.setItem("userDataStored" , JSON.stringify(state.userData))
-        },
+        },  
         remove : (state , action)=>{
             state.userData.splice(action , 1)
             localStorage.setItem("userDataStored" , JSON.stringify(state.userData))
