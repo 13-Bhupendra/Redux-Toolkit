@@ -1,1 +1,1 @@
-## react Redux-toolkit Projects
+## React / Redux-toolkit Projects
