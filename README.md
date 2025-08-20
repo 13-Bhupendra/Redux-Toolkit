@@ -1,5 +1,5 @@
 ## React / Redux-toolkit Projects
-Projects :
+Projects done :
 ```
 - CounterApp-Slice
 - Redux-TodoList
