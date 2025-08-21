@@ -41,10 +41,10 @@ const [editIndex , seteditIndex]  = useState(null)
     <div>
         <h1 className='fw-bold text-center'>Registration Form</h1>
       
-<div className='container d-flex mt-5' >
+<div className='container  d-flex mt-5' >
             <div className=' text-center form'>
             <input className='mt-3' value={name} type="text" placeholder='Enter Full name :' onChange={(el)=>setname(el.target.value)} required/> <br />
-            <input className='mt-3' value={email} type="Email" placeholder='Enter Email :' onChange={(el)=>setemail(el.target.value)} required/><br />
+            <input className='mt-3' value={email} type="email" placeholder='Enter Email :' onChange={(el)=>setemail(el.target.value)} required/><br />
             <input className='mt-3' value={number} type="tel" placeholder='Enter Mobile Number :'  onChange={(el)=>setnumber(el.target.value)} maxLength={10} required /><br />
             <input className='mt-3' value={password} type="password" placeholder='Enter Password :'  onChange={(el)=>setpassword(el.target.value)} required/> <br />
             <button disabled={!name || !email || !number || !password} className='mt-5 mb-3 btn btn-primary' onClick={()=>handleAddAndUpdateData()}>{editIndex !== null ? "Update" : "Submit" }</button>
